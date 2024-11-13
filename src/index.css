@@ -1,14 +1,16 @@
+/* Tailwind Setting */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-*{
+/* Reset Style */
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-a{
+a {
   text-decoration: none;
   color: inherit;
 }
@@ -18,13 +20,70 @@ a{
 }
 
 body {
-  font-family: "IBM Plex Mono", monospace;
+  font-family: "IBM Plex Mono", "IBM Plex Sans KR", "sans-serif", monospace;
 }
 
+/* Common Page Section Style */
 .page-section {
   width: 100%;
   height: 100vh;
   display: flex;
   padding: 0.5rem;
+  gap: 0.5rem;
+}
 
+/* Custom Logo Style */
+.logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom left, #007fe8 15%, #00cdfc);
+  position: relative;
+}
+
+.logo::before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 20px;
+  width: 30px;
+  height: 30px;
+  background: linear-gradient(
+    to bottom left,
+    rgba(249, 180, 70, 1) 15%,
+    rgba(234, 47, 152, 0.8)
+  );
+  border-radius: 5px;
+  border: 2px solid #ebf5fc;
+}
+
+/* login button style */
+.login-btn {
+  position: relative;
+}
+
+.login-btn > div {
+  width: 100%;
+}
+
+.login-btn button {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.login-btn iframe {
+  position: absolute !important;
+  width: 100% !important;
+  z-index: 99;
+  opacity: 0;
+}
+
+/* item button style */
+.item-btn {
+  display: block;
+  padding: 4px 16px;
+  border-radius: 0.5rem;
+  font-size: 12px;
 }
