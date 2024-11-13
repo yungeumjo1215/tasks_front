@@ -5,27 +5,27 @@ import { FcGoogle } from "react-icons/fc";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../redux/slices/authslice";
+import { login, logout } from "../redux/slices/authSlice";
 
-//구글 로그인 절차
-// 1. 구글 클라이언트 id 발급
+// 구글 로그인 절차
+// 1. 구글 클라이언트 ID 발급
 // 2. @react-oauth/google 라이브러리 설치 및 임포트
-// 3. GoogleOAuthProvider 컴포넌트로 로그인 버튼 감싸기\
-// 4. clienrId props로 구글 클라이언트 id 전달
+// 3. GoogleOAuthProvider 컴포넌트로 로그인 버튼 감싸기
+// 4. clientId props로 구글 클라이언트 ID 전달
 // 5. GoogleLogin 컴포넌트로 요청 및 응답 로직 처리
 // 6. onSucess, onError 콜백 함수로 로그인 성공 및 실패 처리
 
 const Navbar = ({ menuIdx }) => {
   const dispatch = useDispatch();
-  const googleClientId = process.env.REACT_APP_AUTH_CLIENT_ID;
+  const googleClientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
   const user = useSelector((state) => state.auth.authData);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { given_name } = user || {};
 
-  const handleLoginSuccess = useCallback(
-    (reponse) => {
+  const handleLoginSucess = useCallback(
+    (response) => {
       try {
-        const decoded = jwtDecode(reponse.credential);
+        const decoded = jwtDecode(response.credential);
         dispatch(login({ authData: decoded }));
         setIsAuthenticated(true);
       } catch (error) {
@@ -36,15 +36,15 @@ const Navbar = ({ menuIdx }) => {
   );
 
   useEffect(() => {
-    const storeData = JSON.parse(localStorage.getItem("ahthData"));
-    if (storeData) {
-      dispatch(login({ authData: storeData }));
+    const storedData = JSON.parse(localStorage.getItem("authData"));
+    if (storedData) {
+      dispatch(login({ authData: storedData }));
       setIsAuthenticated(true);
     }
   }, [dispatch]);
 
   const handleLoginError = (error) => {
-    console.log("error:", error);
+    console.log("error: ", error);
   };
 
   const handleLogoutClick = () => {
@@ -57,7 +57,7 @@ const Navbar = ({ menuIdx }) => {
       <div className="logo-wrapper flex w-full items-center justify-center gap-8">
         <div className="logo"></div>
         <h2 className="font-semibold text-xl">
-          <Link to="/">YUN</Link>
+          <Link to="/">MARSHALL</Link>
         </h2>
       </div>
 
@@ -90,7 +90,7 @@ const Navbar = ({ menuIdx }) => {
         <div className="w-4/5 flex justify-center login-btn">
           <GoogleOAuthProvider clientId={googleClientId}>
             <GoogleLogin
-              onSuccess={handleLoginSuccess}
+              onSuccess={handleLoginSucess}
               onError={handleLoginError}
             />
             <button className="flex justify-center items-center gap-2 bg-gray-300 text-gray-900 py-3 px-4 rounded-md w-full">
