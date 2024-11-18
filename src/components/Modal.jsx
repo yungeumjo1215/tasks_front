@@ -155,7 +155,7 @@ const Modal = () => {
               placeholder="제목을 입력해 주세요..."
               onChange={handleChange}
               {...(modalType === "details" && { disabled: true })}
-              className="sm:placeholder:text-[1rem] placeholder:text-[0.75rem] sm::text-[1rem] :text-[0.75rem]"
+              className="sm:placeholder:text-[1rem] placeholder:text-[0.75rem] sm:text-[1rem] text-[0.75rem]"
             />
           </div>
           <div className="input-control">
@@ -168,7 +168,7 @@ const Modal = () => {
               placeholder="내용을 입력해 주세요..."
               onChange={handleChange}
               {...(modalType === "details" && { disabled: true })}
-              className="sm:placeholder:text-[1rem] placeholder:text-[0.75rem] sm::text-[1rem] :text-[0.75rem]"
+              className="sm:placeholder:text-[1rem] placeholder:text-[0.75rem] sm:text-[1rem] text-[0.75rem]"
             ></textarea>
           </div>
           <div className="input-control">
@@ -180,7 +180,7 @@ const Modal = () => {
               value={formData.date}
               onChange={handleChange}
               {...(modalType === "details" && { disabled: true })}
-              className="sm:placeholder:text-[1rem] placeholder:text-[0.75rem] sm::text-[1rem] :text-[0.75rem]"
+              className="sm:placeholder:text-[1rem] placeholder:text-[0.75rem] sm:text-[1rem] text-[0.75rem]"
             />
           </div>
           <div className="input-control toggler">
@@ -207,7 +207,7 @@ const Modal = () => {
           </div>
           <div className="submit-btn flex justify-end">
             <button
-              className={`flex justify-end bg-black w-fit py-3 px-6 rounded-md hover:bg-slate-900 lg:text[1rem] text-[0.875rem] ${
+              className={`flex justify-end bg-black w-fit py-3 px-6 rounded-md hover:bg-slate-900 lg:text-[1rem] text-[0.875rem] ${
                 modalType === "details" ? "hidden" : ""
               }`}
               type="submit"

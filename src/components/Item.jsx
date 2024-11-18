@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import {
   fetchDeleteItemData,
   fetchGetItemsData,
-  fetchUpdateCompleteData,
+  fetchUpdateCompletedData,
 } from "../redux/slices/apiSlice";
 
 import { toast } from "react-toastify";
@@ -99,10 +99,10 @@ const Item = ({ task }) => {
     // setIsCompleted(!isCompleted)을 호출하면 상태 업데이트가 비동기적으로 이루어지기 때문에, isCompleted의 값이 즉시 변경되지 않는다.
     // 따라서 updateCompletedData 객체를 생성할 때 isCompleted의 이전 값이 사용된다. 이로 인해 true/false가 한 단계씩 밀리게 된다.
 
-    const newIsCompleted = !isCompleted; //데이터베이스에 있는 iscompleted의 반대값 저장
+    const newIsCompleted = !isCompleted; // 데이터베이스에 있는 iscompleted의 반대값 저장
     setIsCompleted(newIsCompleted);
 
-    // console.log(isCompleted);
+    // console.log(newIsCompleted);
 
     const updateCompletedData = {
       id: _id,
@@ -110,7 +110,7 @@ const Item = ({ task }) => {
     };
 
     try {
-      await dispatch(fetchUpdateCompleteData(updateCompletedData)).unwrap();
+      await dispatch(fetchUpdateCompletedData(updateCompletedData)).unwrap();
       newIsCompleted
         ? toast.success("완료 처리 되었습니다.")
         : toast.success("미완료 처리 되었습니다.");
@@ -141,7 +141,7 @@ const Item = ({ task }) => {
         </div>
         <div className="lower">
           <p className="date lg:text-sm text-[0.75rem] mb-1">{date}</p>
-          <div className="item-footer flex justify-between flex-col md:flex-row">
+          <div className="item-footer flex justify-between flex-col md:flex-row gap-2">
             <div className="item-footer-left flex gap-2">
               {iscompleted ? (
                 <button

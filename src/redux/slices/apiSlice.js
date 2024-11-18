@@ -78,25 +78,25 @@ export const fetchPostItemData = postItemFetchThunk(
   POST_TASK_API_URL
 );
 
-// update completed Thunk function 정의
+// update completed thunk function 정의
 const updateCompletedFetchThunk = (actionType, apiURL) => {
-  return createAsyncThunk(actionType, async (completdData) => {
-    console.log(completdData);
+  return createAsyncThunk(actionType, async (completedData) => {
+    console.log(completedData);
 
     const options = {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(completdData), // 표준 json 문자열로 변환
+      body: JSON.stringify(completedData), // 표준 json 문자열로 변환
     };
     return await patchRequest(apiURL, options);
   });
 };
 
 // update completed item
-export const fetchUpdateCompleteData = updateCompletedFetchThunk(
-  "fetchUpdateCompletedItem",
+export const fetchUpdateCompletedData = updateCompletedFetchThunk(
+  "fetchupdateCompletedItem",
   UPDATE_COMPLETED_TASK_API_URL
 );
 
@@ -120,7 +120,7 @@ const apiSlice = createSlice({
     deleteItemData: null,
     postItemData: null,
     updateItemData: null,
-    updateCompleted: null,
+    updateCompletedData: null,
   },
   extraReducers: (builder) => {
     builder
@@ -137,10 +137,10 @@ const apiSlice = createSlice({
       .addCase(fetchUpdateItemData.rejected, handleRejected)
 
       .addCase(
-        fetchUpdateCompleteData.fulfilled,
-        handleFulfilled("updateCompleted")
+        fetchUpdateCompletedData.fulfilled,
+        handleFulfilled("updateCompletedData")
       )
-      .addCase(fetchUpdateCompleteData.rejected, handleRejected);
+      .addCase(fetchUpdateCompletedData.rejected, handleRejected);
   },
 }); // slice 객체 저장
 

@@ -10,7 +10,7 @@ import Modal from "./Modal";
 import { openModal } from "../redux/slices/modalSlice";
 
 const Itempanel = ({ pageTitle, filterCompleted, filterImportant }) => {
-  console.log(filterCompleted, filterImportant);
+  // console.log(filterCompleted, filterImportant);
   const authData = useSelector((state) => state.auth.authData);
   const userKey = authData?.sub;
   const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const Itempanel = ({ pageTitle, filterCompleted, filterImportant }) => {
   };
 
   return (
-    <div className="panel bg-[#212121] lg:w-4/5 w-[calc(100%-80px)] h-full rounded-md border border-gray-500 py-5 px-4 overflow-y-auto">
+    <div className="panel bg-[#212121] lg:w-4/5 h-full w-[calc(100%-80px)] rounded-md border border-gray-500 py-5 px-4 overflow-y-auto">
       {userKey ? (
         <div className="panel-wraper w-full h-full">
           {isOpen && <Modal />}
@@ -85,6 +85,7 @@ const Itempanel = ({ pageTitle, filterCompleted, filterImportant }) => {
               할일 추가
             </button>
           </div>
+
           <div className="items flex flex-wrap">
             {loading ? (
               <SkeletonTheme
