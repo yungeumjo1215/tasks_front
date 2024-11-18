@@ -1,4 +1,4 @@
-const rootPath = "http://localhost:8000";
+const rootPath = "https://back.ringgo.site";
 // const rootPath = "http://54.224.102.19";
 
 const GET_TASKS_API_URL = `${rootPath}/getTasks`;
